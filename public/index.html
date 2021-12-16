@@ -15,8 +15,21 @@
   <input type="text" id="description" name="description">
   <label for="video">Post YouTube Link here!</label><br>
   <input type="text" id="video" name="video">
+  <button id="button">Submit</button>
 </form>
 
+<script>
+  document.getElementById("button").addEventListener("click", event =>{
+    event.preventDefault()
+    const songName = document.getElementById('name').value
+     const description = document.getElementById('description').value
+      const video = document.getElementById('video').value
+      console.log(songName + description + video)
+  });
+
+
+
+</script>
 
 
 
