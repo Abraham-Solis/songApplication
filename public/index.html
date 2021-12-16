@@ -8,7 +8,7 @@
   <title>Document</title>
 </head>
 
-<body>
+<body style= "background-color: aqua;">
 
   <form>
     <label for="songTitle">Song name:</label>
@@ -28,7 +28,7 @@
 
   <script>
 
-   let likes = 0
+    // let likes = 0
 
 
     document.getElementById("button").addEventListener("click", event => {
@@ -42,10 +42,9 @@
       
       <h3>Song Name: ${songName}</h3>
       <h3>Your Description: ${description}</h3>
-      <h3>Your Link here! ${video}</h3>
-      <button id = "likeMe">Like Me! </button>
-
-      <p>Your Like Counter! ${likes} </p>
+      <h3>Your Link here! </h3>
+      <a href="${video}">${songName}</a>
+      <button id = "clicks" onClick = "onClick()" > ${clicks} </button>
       
       `
       document.getElementById('content').append(songElem)
@@ -69,16 +68,22 @@
 
 
     })
-      
-    //Like Me Function
 
-    function likes = () =>{
-       document.getElementById("likeMe").addEventListener("click", event => {
-        event.preventDefault()
-        likes++
+    var clicks = 0;
 
+      function onClick() {
+        event.preventDefault();
+        clicks += 1;
+        document.getElementById("clicks").innerHTML = clicks;
       };
-    }
+
+    // document.addEventListener('click', event => {
+    //   event.preventDefault()
+    //   if (event.target.classList.contains('likeMe')) {
+    //     likes++
+    //   }
+    // })
+
 
 
   </script>
