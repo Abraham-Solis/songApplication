@@ -24,3 +24,9 @@ router.put('/songs/:id', ({ params: { id }, body }, res) => Songs.update(body, {
 
 
   //DELETE ONE MOVIE 
+
+router.delete('/songs/:id', ({ params: { id } }, res) => Songs.destroy({ where: { id } })
+  .then(() => res.sendStatus(200))
+  .catch(err => console.log(err)))
+
+  module.exports = router
