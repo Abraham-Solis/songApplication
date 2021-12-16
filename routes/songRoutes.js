@@ -18,4 +18,9 @@ router.post('/songs', (req, res) => Songs.create(req.body)
 
   //PUT ONE SONG 
 
-  
+router.put('/songs/:id', ({ params: { id }, body }, res) => Songs.update(body, { where: { id } })
+.then(() => res.sendStatus(200))
+  .catch(err => console.log(err)))
+
+
+  //DELETE ONE MOVIE 
