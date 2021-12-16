@@ -1,5 +1,5 @@
-const mysql = require('mysql2')
+const { Sequelize } = require('sequelize')
 
-const db = mysql.createConnection('mysql://root:rootroot@localhost:3306/userSongs_db')
+const sequelize = new Sequelize('mysql://root:rootroot@localhost:3306/userSongs_db')
 
-module.exports = db
+module.exports = sequelize

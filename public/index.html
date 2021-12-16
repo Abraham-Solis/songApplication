@@ -1,38 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
-  
-<form>
-  <label for="name">Song name:</label><br>
-  <input type="text" id="name" name="name"><br>
-  <label for="description">Why you like the song?</label><br>
-  <input type="text" id="description" name="description">
-  <label for="video">Post YouTube Link here!</label><br>
-  <input type="text" id="video" name="video">
-  <button id="button">Submit</button>
-</form>
 
-<script>
-  document.getElementById("button").addEventListener("click", event =>{
-    event.preventDefault()
-    const songName = document.getElementById('name').value
-     const description = document.getElementById('description').value
+  <form>
+    <label for="songTitle">Song name:</label>
+    <br>
+    <input type="text" id="songTitle" name="songTitle">
+    <br>
+    <label for="description">Why you like the song?</label>
+    <br>
+    <input type="text" id="description" name="description"><br>
+    <label for="video">Post YouTube Link here!</label>
+    <br>
+    <input type="text" id="video" name="video">
+    <button id="button">Submit</button>
+
+    <div id="content"></div>
+  </form>
+
+  <script>
+
+   let likes = 0
+
+
+    document.getElementById("button").addEventListener("click", event => {
+      event.preventDefault()
+      const songName = document.getElementById('songTitle').value
+      const description = document.getElementById('description').value
       const video = document.getElementById('video').value
-      console.log(songName + description + video)
-  });
+      console.log(songName + ' ' + description + '' + video)
+      const songElem = document.createElement('div')
+      songElem.innerHTML = `
+      
+      <h3>Song Name: ${songName}</h3>
+      <h3>Your Description: ${description}</h3>
+      <h3>Your Link here! ${video}</h3>
+      <button id = "likeMe">Like Me! </button>
+
+      <p>Your Like Counter! ${likes} </p>
+      
+      `
+      document.getElementById('content').append(songElem)
+
+      document.getElementById("songTitle").value = ``
+      document.getElementById("description").value = ``
+      document.getElementById("video").value = ``
+
+      const song = {
+        title: songName,
+        description: description,
+        link: video
+      }
+
+      axios.post('/api/songs', song)
+        .then(({ data: song }) => {
+          console.log(song)
+        })
+        .catch(err => console.error(err))
 
 
 
-</script>
+    })
+      
+    //Like Me Function
+
+    function likes = () =>{
+       document.getElementById("likeMe").addEventListener("click", event => {
+        event.preventDefault()
+        likes++
+
+      };
+    }
+
+
+  </script>
 
 
 
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 </body>
+
 </html>
